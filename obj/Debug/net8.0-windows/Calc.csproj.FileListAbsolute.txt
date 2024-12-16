@@ -1,0 +1,16 @@
+C:\Users\valsa\Desktop\Calc-master\Calc\bin\Debug\net8.0-windows\Calc.exe
+C:\Users\valsa\Desktop\Calc-master\Calc\bin\Debug\net8.0-windows\Calc.deps.json
+C:\Users\valsa\Desktop\Calc-master\Calc\bin\Debug\net8.0-windows\Calc.runtimeconfig.json
+C:\Users\valsa\Desktop\Calc-master\Calc\bin\Debug\net8.0-windows\Calc.dll
+C:\Users\valsa\Desktop\Calc-master\Calc\bin\Debug\net8.0-windows\Calc.pdb
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.Form1.resources
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.csproj.GenerateResource.cache
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.AssemblyInfoInputs.cache
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.AssemblyInfo.cs
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.csproj.CoreCompileInputs.cache
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.dll
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\refint\Calc.dll
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.pdb
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.genruntimeconfig.cache
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\ref\Calc.dll
