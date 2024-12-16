@@ -14,3 +14,4 @@ C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\refint\Calc.dll
 C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.pdb
 C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.genruntimeconfig.cache
 C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\ref\Calc.dll
+C:\Users\valsa\Desktop\Calc-master\Calc\obj\Debug\net8.0-windows\Calc.sourcelink.json

@@ -90,7 +90,7 @@ namespace Calc
 
         private void button13_Click(object sender, EventArgs e)
         {
-            operatorButton(null);
+            operatorButton('=');
             resetCalc(currentValue.ToString());
         }
 
@@ -131,14 +131,14 @@ namespace Calc
         }
         private void button21_Click(object sender, EventArgs e)
         {
-
+            if (formula != "") {changeFormula(eliminateLastCharacter(formula)); }
+            if (newFormula != "") { newFormula = eliminateLastCharacter(newFormula); }
         }
 
         public void addCharacter(char c)
         {
-            formula += c;
-            newFormula = newFormula + c;
-            display();
+            changeFormula(formula += c);
+            newFormula += c;
 
         }
 
@@ -158,16 +158,19 @@ namespace Calc
 
         }
 
-        public void operatorButton(char? nOperator)
+        public void operatorButton(char nOperator)
         {
             string tempString = "0";
             try
             {
-                if (nOperator != null) { tempString = newFormula.Substring(0, newFormula.Length - 1); }//get rid of operation
+                if (nOperator != '=') { tempString = eliminateLastCharacter(newFormula); }//get rid of operation
+                else { tempString = newFormula; }
                 newValue = float.Parse(tempString);
 
                 currentValue = applyOperation(currentValue, newValue);
                 currentOperation = nOperator;
+
+                changeFormula(currentValue.ToString()+nOperator);
 
                 newFormula = "";
                 newValue = 0.0f;
@@ -189,11 +192,6 @@ namespace Calc
         {
             textBox1.Text = formula;
         }
-        public void displayResult()
-        {
-            textBox1.Text = formula;
-        }
-
         public float? applyOperation(float? a, float b)
         {
             switch (currentOperation)
@@ -210,6 +208,10 @@ namespace Calc
             return null;
         }
 
+        public string eliminateLastCharacter(string toChange)
+        {
+            return toChange.Substring(0, toChange.Length - 1);
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
