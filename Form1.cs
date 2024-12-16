@@ -11,7 +11,10 @@ namespace Calc
         public String newFormula = "";
         public float newValue = 0.0f;
         public char? currentOperation = '+';
-        public Stack<int> stack = new Stack<int>();
+
+        public Stack<float?> valueStack = new Stack<float?>();
+        public Stack<char?> operationStack = new Stack<char?>();
+
 
         public Form1()
         {
@@ -96,7 +99,7 @@ namespace Calc
 
         private void button14_Click(object sender, EventArgs e)
         {
-
+            addCharacter('.');
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace Calc
 
         private void button16_Click(object sender, EventArgs e)
         {
-
+            addCharacter('-');
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -122,17 +125,34 @@ namespace Calc
 
         private void button19_Click(object sender, EventArgs e)
         {
-
+            addCharacter(')');
+            closeParenthesis();
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-
+            addCharacter('(');
+            openParenthesis();
         }
         private void button21_Click(object sender, EventArgs e)
         {
             if (formula != "") {changeFormula(eliminateLastCharacter(formula)); }
             if (newFormula != "") { newFormula = eliminateLastCharacter(newFormula); }
+        }
+
+        public void openParenthesis()
+        {
+            valueStack.Push(currentValue);
+            operationStack.Push(currentOperation);
+            resetHiddenValues();
+
+        }
+        public void closeParenthesis()
+        {
+            newFormula = currentValue.ToString();
+            currentValue = valueStack.Pop();
+            currentOperation = operationStack.Pop();
+            operatorButton(currentOperation);
         }
 
         public void addCharacter(char c)
@@ -151,14 +171,18 @@ namespace Calc
         {
             changeFormula(message);
             formula = "";
+            resetHiddenValues();
+        }
+
+        public void resetHiddenValues()
+        {
             currentValue = 0;
             newFormula = "";
             newValue = 0;
             currentOperation = '+';
-
         }
 
-        public void operatorButton(char nOperator)
+        public void operatorButton(char? nOperator)
         {
             string tempString = "0";
             try
@@ -181,7 +205,7 @@ namespace Calc
             }
             catch (ArgumentNullException)
             {
-                resetCalc("Format Error");
+                resetCalc("Null Argument Error");
             }
             catch (OverflowException)
             {
