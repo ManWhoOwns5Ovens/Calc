@@ -126,13 +126,11 @@ namespace Calc
         private void button19_Click(object sender, EventArgs e)
         {
             addCharacter(')');
-            closeParenthesis();
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
             addCharacter('(');
-            openParenthesis();
         }
         private void button21_Click(object sender, EventArgs e)
         {
@@ -149,16 +147,40 @@ namespace Calc
         }
         public void closeParenthesis()
         {
-            newFormula = currentValue.ToString();
-            currentValue = valueStack.Pop();
-            currentOperation = operationStack.Pop();
-            operatorButton(currentOperation);
+            if (!string.IsNullOrEmpty(newFormula))
+            {
+                newValue = float.Parse(newFormula);
+                currentValue = applyOperation(currentValue, newValue);
+            }
+
+            // Retrieve the saved state
+            float? previousValue = valueStack.Pop();
+            char? previousOperation = operationStack.Pop();
+
+            // Combine sub-expression result with the previous value
+            currentValue = applyOperation(previousValue, currentValue);
+            changeFormula(currentValue.ToString());
+
+            // Reset for the next part
+            newFormula = "";
+            newValue = 0.0f;
         }
 
         public void addCharacter(char c)
         {
-            changeFormula(formula += c);
-            newFormula += c;
+            if (c == '(')
+            {
+                openParenthesis();
+            }
+            else if (c == ')')
+            {
+                closeParenthesis();
+            }
+            else
+            {
+                changeFormula(formula += c);
+                newFormula += c;
+            }
 
         }
 
@@ -216,7 +238,7 @@ namespace Calc
         {
             textBox1.Text = formula;
         }
-        public float? applyOperation(float? a, float b)
+        public float? applyOperation(float? a, float? b)
         {
             switch (currentOperation)
             {
