@@ -46,8 +46,6 @@
             button16 = new Button();
             button17 = new Button();
             button18 = new Button();
-            button19 = new Button();
-            button20 = new Button();
             textBox1 = new TextBox();
             button21 = new Button();
             SuspendLayout();
@@ -242,7 +240,7 @@
             // button18
             // 
             button18.Font = new Font("Segoe UI", 20F);
-            button18.Location = new Point(401, 222);
+            button18.Location = new Point(10, 222);
             button18.Name = "button18";
             button18.Size = new Size(189, 150);
             button18.TabIndex = 17;
@@ -250,32 +248,10 @@
             button18.UseVisualStyleBackColor = true;
             button18.Click += button18_Click;
             // 
-            // button19
-            // 
-            button19.Font = new Font("Segoe UI", 20F);
-            button19.Location = new Point(206, 222);
-            button19.Name = "button19";
-            button19.Size = new Size(189, 150);
-            button19.TabIndex = 18;
-            button19.Text = ")";
-            button19.UseVisualStyleBackColor = true;
-            button19.Click += button19_Click;
-            // 
-            // button20
-            // 
-            button20.Font = new Font("Segoe UI", 20F);
-            button20.Location = new Point(10, 222);
-            button20.Name = "button20";
-            button20.Size = new Size(189, 150);
-            button20.TabIndex = 19;
-            button20.Text = "(";
-            button20.UseVisualStyleBackColor = true;
-            button20.Click += button20_Click;
-            // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 20F);
-            textBox1.Location = new Point(0, 2);
+            textBox1.Location = new Point(10, 12);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(774, 200);
@@ -285,7 +261,7 @@
             // button21
             // 
             button21.Font = new Font("Segoe UI", 20F);
-            button21.Location = new Point(786, 222);
+            button21.Location = new Point(401, 222);
             button21.Name = "button21";
             button21.Size = new Size(189, 150);
             button21.TabIndex = 21;
@@ -300,8 +276,6 @@
             ClientSize = new Size(987, 1004);
             Controls.Add(button21);
             Controls.Add(textBox1);
-            Controls.Add(button20);
-            Controls.Add(button19);
             Controls.Add(button18);
             Controls.Add(button17);
             Controls.Add(button16);
@@ -347,8 +321,6 @@
         private Button button16;
         private Button button17;
         private Button button18;
-        private Button button19;
-        private Button button20;
         private TextBox textBox1;
         private Button button21;
     }

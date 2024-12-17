@@ -12,9 +12,8 @@ namespace Calc
         public float newValue = 0.0f;
         public char? currentOperation = '+';
 
-        public Stack<float?> valueStack = new Stack<float?>();
-        public Stack<char?> operationStack = new Stack<char?>();
-
+        Stack<float?> valueStack = new Stack<float?>();
+        Stack<char?> operationStack = new Stack<char?>();
 
         public Form1()
         {
@@ -125,34 +124,21 @@ namespace Calc
 
         private void button19_Click(object sender, EventArgs e)
         {
-            addCharacter(')');
-            closeParenthesis();
+
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-            addCharacter('(');
-            openParenthesis();
+
         }
         private void button21_Click(object sender, EventArgs e)
         {
-            if (formula != "") {changeFormula(eliminateLastCharacter(formula)); }
+            
+            if (formula != "") {
+                char temp = formula[formula.Length - 1];
+                if (temp == '+' || temp == '-' || temp == '*' || temp == '/') { newValue = 0; currentOperation = '+'; }
+                changeFormula(eliminateLastCharacter(formula));}
             if (newFormula != "") { newFormula = eliminateLastCharacter(newFormula); }
-        }
-
-        public void openParenthesis()
-        {
-            valueStack.Push(currentValue);
-            operationStack.Push(currentOperation);
-            resetHiddenValues();
-
-        }
-        public void closeParenthesis()
-        {
-            newFormula = currentValue.ToString();
-            currentValue = valueStack.Pop();
-            currentOperation = operationStack.Pop();
-            operatorButton(currentOperation);
         }
 
         public void addCharacter(char c)
@@ -185,32 +171,37 @@ namespace Calc
         public void operatorButton(char? nOperator)
         {
             string tempString = "0";
-            try
+            if (newFormula.Length > 1)
             {
-                if (nOperator != '=') { tempString = eliminateLastCharacter(newFormula); }//get rid of operation
-                else { tempString = newFormula; }
-                newValue = float.Parse(tempString);
+                try
+                {
+                    if (nOperator != '=') { tempString = eliminateLastCharacter(newFormula); }//get rid of operation
+                    else { tempString = newFormula; }
+                    newValue = float.Parse(tempString);
 
-                currentValue = applyOperation(currentValue, newValue);
-                currentOperation = nOperator;
+                    currentValue = applyOperation(currentValue, newValue);
+                    currentOperation = nOperator;
 
-                changeFormula(currentValue.ToString()+nOperator);
+                    changeFormula(currentValue.ToString() + nOperator);
 
-                newFormula = "";
-                newValue = 0.0f;
+                    newFormula = "";
+                    newValue = 0.0f;
+                }
+                catch (FormatException)
+                {
+                    resetCalc("Format Error");
+                }
+                catch (ArgumentNullException)
+                {
+                    resetCalc("Null Argument Error");
+                }
+                catch (OverflowException)
+                {
+                    resetCalc("Overflow Error");
+                }
             }
-            catch (FormatException)
-            {
-                resetCalc("Format Error");
-            }
-            catch (ArgumentNullException)
-            {
-                resetCalc("Null Argument Error");
-            }
-            catch (OverflowException)
-            {
-                resetCalc("Overflow Error");
-            }
+            
+            
         }
         public void display()
         {
