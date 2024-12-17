@@ -12,8 +12,7 @@ namespace Calc
         public float newValue = 0.0f;
         public char? currentOperation = '+';
 
-        Stack<float?> valueStack = new Stack<float?>();
-        Stack<char?> operationStack = new Stack<char?>();
+        public bool operationChanged = false;
 
         public Form1()
         {
@@ -136,7 +135,7 @@ namespace Calc
             
             if (formula != "") {
                 char temp = formula[formula.Length - 1];
-                if (temp == '+' || temp == '-' || temp == '*' || temp == '/') { newValue = 0; currentOperation = '+'; }
+                if (temp == '+' || temp == '-' || temp == '*' || temp == '/') { operationChanged = true; }
                 changeFormula(eliminateLastCharacter(formula));}
             if (newFormula != "") { newFormula = eliminateLastCharacter(newFormula); }
         }
@@ -171,12 +170,13 @@ namespace Calc
         public void operatorButton(char? nOperator)
         {
             string tempString = "0";
-            if (newFormula.Length > 1)
+            if (newFormula != "" & operationChanged == false)
             {
                 try
                 {
                     if (nOperator != '=') { tempString = eliminateLastCharacter(newFormula); }//get rid of operation
                     else { tempString = newFormula; }
+
                     newValue = float.Parse(tempString);
 
                     currentValue = applyOperation(currentValue, newValue);
@@ -199,6 +199,9 @@ namespace Calc
                 {
                     resetCalc("Overflow Error");
                 }
+            }
+            else { operationChanged = false;
+                newFormula = "";
             }
             
             
